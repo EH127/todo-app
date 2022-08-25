@@ -1,0 +1,3 @@
+interface IAddTask {
+  setTasks: Function;
+}
