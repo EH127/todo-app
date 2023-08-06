@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { Route, Routes, NativeRouter } from "react-router-native";
 import Add from "./Add";
 import List from "./List";
@@ -7,14 +7,19 @@ import Main from "./Main";
 import { Styles } from "./Styles";
 
 const Router = () => {
-  const [tasks, setTasks] = useState<ITask["tasks"]>([]);
+  const [tasks, setTasks] = useState<ITask[]>([]);
+
+  const deleteTask = (id: number) => {
+    const updateTasks = tasks.filter((task, _index) => task.id !== id);
+    setTasks(updateTasks);
+  };
   return (
     <View style={Styles().androidSafeArea}>
       <NativeRouter>
         <List />
         <Routes>
-          <Route path="/" element={<Main tasks={tasks} />} />
-          <Route path="/add" element={<Add setTasks={setTasks}/>} />
+          <Route path="/" element={<Main tasks={tasks} deleteTask={deleteTask}/>} />
+          <Route path="/add" element={<Add setTasks={setTasks} />} />
         </Routes>
       </NativeRouter>
     </View>

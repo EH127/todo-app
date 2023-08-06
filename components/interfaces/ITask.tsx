@@ -1,6 +1,5 @@
 interface ITask {
-  tasks: {
-    name: string;
-    date: string;
-  }[];
+  id: number;
+  name: string;
+  date: string;
 }

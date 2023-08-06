@@ -30,17 +30,18 @@ const Add = (props: IAddTask) => {
   };
 
   const onAddTask = () => {
-    props.setTasks((prevTasks: ITask["tasks"]) => [
-      { name: name, date: text },
+    props.setTasks((prevTasks: ITask[]) => [
+      { id: prevTasks.length + 1, name: name, date: text },
       ...prevTasks,
     ]);
   };
 
   return (
     <View>
-      <TextInput defaultValue={"Task name"} onChangeText={setName} />
+      <TextInput placeholder={"Task name"} onChangeText={setName} />
       <View style={Styles().addTask}>
         <Button title="Deadline date" onPress={onPress} />
+        <Text> {text}</Text>
         {show && (
           <DateTimePicker
             value={date}
@@ -49,7 +50,6 @@ const Add = (props: IAddTask) => {
             onChange={onChange}
           />
         )}
-        <Text>{text}</Text>
       </View>
       <Button title="Add task" onPress={onAddTask} />
     </View>
