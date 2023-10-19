@@ -12,7 +12,7 @@ const Router = () => {
 
   useEffect(() => {
     axios
-      .get("http://eladstorj.asuscomm.com:8000/getalltasks")
+      .get("/getalltasks")
       .then((req) => setTasks(req.data.tasks));
   }, []);
 

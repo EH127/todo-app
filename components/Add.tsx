@@ -32,7 +32,7 @@ const Add = (props: IAddTask) => {
 
   const onAddTask = () => {
     axios
-      .post("http://eladstorj.asuscomm.com:8000/addtask", { name: name, deadline: text })
+      .post("/addtask", { name: name, deadline: text })
       .then((req) => {
         props.setTasks(req.data.tasks);
       });

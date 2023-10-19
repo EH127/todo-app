@@ -5,13 +5,13 @@ import axios from "axios";
 const Main = (props: ITasks) => {
   const { setTasks, tasks } = props;
   const deleteTask = (id: string) => {
-    axios.delete(`http://eladstorj.asuscomm.com:8000/deletetask/${id}`).then((req) => {
+    axios.delete(`/deletetask/${id}`).then((req) => {
       setTasks(req.data.tasks);
     });
   };
 
   const changeTask = (id: string) => {
-    axios.put(`http://eladstorj.asuscomm.com:8000/completetask/${id}`).then((req) => {
+    axios.put(`/completetask/${id}`).then((req) => {
       const updatedTasks = tasks.map((task) => {
         if (task._id === id) {
           return req.data;

@@ -13,13 +13,14 @@ export const Styles = (checkedColor = "black") =>
       borderRadius: 10,
       borderColor: "black",
       borderWidth: 4,
+      marginBottom: 5,
     },
     row: {
       flexDirection: "row",
     },
     status: {
-      height: 100,
-      paddingRight:15,
+      height: "auto",
+      paddingRight: 15,
       borderTopLeftRadius: 5,
       borderBottomLeftRadius: 5,
       backgroundColor: checkedColor,
@@ -39,6 +40,6 @@ export const Styles = (checkedColor = "black") =>
       flexDirection: "row",
       paddingBottom: 10,
       paddingTop: 10,
-      alignItems:"center",
+      alignItems: "center",
     },
   });
