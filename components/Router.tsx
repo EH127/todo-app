@@ -1,24 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View } from "react-native";
 import { Route, Routes, NativeRouter } from "react-router-native";
 import Add from "./Add";
 import List from "./List";
 import Main from "./Main";
 import { Styles } from "./Styles";
+import axios from "axios";
 
 const Router = () => {
   const [tasks, setTasks] = useState<ITask[]>([]);
 
-  const deleteTask = (id: number) => {
-    const updateTasks = tasks.filter((task, _index) => task.id !== id);
-    setTasks(updateTasks);
-  };
+  useEffect(() => {
+    axios
+      .get("http://eladstorj.asuscomm.com:8000/getalltasks")
+      .then((req) => setTasks(req.data.tasks));
+  }, []);
+
   return (
     <View style={Styles().androidSafeArea}>
       <NativeRouter>
         <List />
         <Routes>
-          <Route path="/" element={<Main tasks={tasks} deleteTask={deleteTask}/>} />
+          <Route
+            path="/"
+            element={<Main tasks={tasks} setTasks={setTasks} />}
+          />
           <Route path="/add" element={<Add setTasks={setTasks} />} />
         </Routes>
       </NativeRouter>

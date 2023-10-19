@@ -1,5 +1,6 @@
 interface ITask {
-  id: number;
+  _id: string;
   name: string;
-  date: string;
+  deadline: string;
+  iscompleted: boolean;
 }

@@ -4,6 +4,7 @@ import { Button } from "react-native-elements";
 import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
+import axios from "axios";
 import { Styles } from "./Styles";
 
 const Add = (props: IAddTask) => {
@@ -30,10 +31,11 @@ const Add = (props: IAddTask) => {
   };
 
   const onAddTask = () => {
-    props.setTasks((prevTasks: ITask[]) => [
-      { id: prevTasks.length + 1, name: name, date: text },
-      ...prevTasks,
-    ]);
+    axios
+      .post("http://eladstorj.asuscomm.com:8000/addtask", { name: name, deadline: text })
+      .then((req) => {
+        props.setTasks(req.data.tasks);
+      });
   };
 
   return (

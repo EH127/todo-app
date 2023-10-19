@@ -1,16 +1,34 @@
-import { ScrollView, View } from "react-native";
+import { ScrollView } from "react-native";
 import Card from "./Card";
+import axios from "axios";
 
 const Main = (props: ITasks) => {
+  const { setTasks, tasks } = props;
+  const deleteTask = (id: string) => {
+    axios.delete(`http://eladstorj.asuscomm.com:8000/deletetask/${id}`).then((req) => {
+      setTasks(req.data.tasks);
+    });
+  };
+
+  const changeTask = (id: string) => {
+    axios.put(`http://eladstorj.asuscomm.com:8000/completetask/${id}`).then((req) => {
+      const updatedTasks = tasks.map((task) => {
+        if (task._id === id) {
+          return req.data;
+        }
+        return task;
+      });
+      setTasks([...updatedTasks]);
+    });
+  };
   return (
     <ScrollView>
       {props.tasks.map((task, key) => {
         return (
           <Card
-            name={task.name}
-            date={task.date}
-            id={task.id}
-            deleteTask={props.deleteTask}
+            task={task}
+            deleteTask={deleteTask}
+            changeTask={changeTask}
             key={key}
           />
         );

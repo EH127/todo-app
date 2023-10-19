@@ -1,31 +1,30 @@
-import { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import { CheckBox } from "react-native-elements"; 
+import { CheckBox } from "react-native-elements";
 import { Styles } from "./Styles";
 
 const Card = (props: ICard) => {
-  const [reading, isReading] = useState(false);
-  const [color, setColor] = useState("black");
+
+  const {deleteTask, task, changeTask} = props;
+  const {iscompleted,deadline,_id,name } = task
 
   const click = () => {
-    isReading(!reading);
-    setColor(reading ? "black" : "red");
+    changeTask(_id);
   };
 
   return (
     <View style={[Styles().card, Styles().row]}>
-      <View style={Styles(color).status} />
+      <View style={Styles(iscompleted ? "red" : "black").status} />
       <View>
-        <Text>Task: {props.name}</Text>
-        <Text>Untill: {props.date ? props.date : "No time set"}</Text>
-        <View style={[Styles().row, Styles().center]}>
+        <Text>Task: {name}</Text>
+        <Text>Untill: {deadline ? deadline : "No time set"}</Text>
+        <View style={Styles().row}>
           <CheckBox
-            checked={reading}
+            checked={iscompleted}
             onPress={click}
             title={"Done?"}
             iconRight
           />
-          <TouchableOpacity onPress={() => props.deleteTask(props.id)}>
+          <TouchableOpacity onPress={() => deleteTask(_id)} style={Styles().center}>
             <Text>delete</Text>
           </TouchableOpacity>
         </View>

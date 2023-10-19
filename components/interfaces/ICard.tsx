@@ -1,6 +1,5 @@
 interface ICard {
   deleteTask: Function;
-  id: number;
-  name: string;
-  date: string;
+  task: ITask;
+  changeTask: Function;
 }

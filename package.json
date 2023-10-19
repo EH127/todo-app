@@ -10,16 +10,18 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo/webpack-config": "^0.12.52",
     "@react-native-community/datetimepicker": "7.2.0",
-    "expo": "^49.0.0",
+    "axios": "^1.5.0",
+    "expo": "^44.0.6",
     "expo-status-bar": "~1.6.0",
+    "expo-updates": "~0.18.16",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-native": "0.72.3",
+    "react-native": "0.72.5",
     "react-native-elements": "^3.4.2",
     "react-native-web": "~0.19.6",
-    "react-router-native": "^6.3.0",
-    "expo-updates": "~0.18.11"
+    "react-router-native": "^6.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
